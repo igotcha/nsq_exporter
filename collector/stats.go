@@ -2,6 +2,7 @@ package collector
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 )
 
@@ -91,8 +92,13 @@ func getNsqdStats(client *http.Client, nsqdURL string) (*stats, error) {
 	}
 	defer resp.Body.Close()
 
+	buf, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
 	var sr statsResponse
-	if err = json.NewDecoder(resp.Body).Decode(&sr); err != nil {
+	err = json.Unmarshal(buf, &sr)
+	if err != nil {
 		return nil, err
 	}
 	return &sr.Data, nil
