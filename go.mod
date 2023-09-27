@@ -1,6 +1,6 @@
 module github.com/igotcha/nsq_exporter
 
-go 1.19.0
+go 1.19
 
 require github.com/prometheus/client_golang v1.16.0
 
