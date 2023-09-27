@@ -1,6 +1,6 @@
 module github.com/lovoo/nsq_exporter
 
-go 1.19.0
+go 1.19
 
 require github.com/prometheus/client_golang v0.8.1-0.20170125120923-c317fb74746e
 
